@@ -2,7 +2,11 @@ import "./index.css";
 import BackgroundSVG from "./BackgroundSVG";
 import React from "react";
 import { useState } from "react";
-import { OPENAI_API_KEY } from "./config";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 function App() {
   const [value, setValue] = useState("");
