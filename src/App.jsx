@@ -3,7 +3,7 @@ import BackgroundSVG from "./BackgroundSVG";
 import React from "react";
 import { useState } from "react";
 
-const OPENAI_API_KEY = import.meta.env.VITE_APP_OPENAI_API_KEY;
+const OPENAI_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
 function App() {
   const [value, setValue] = useState("");
@@ -49,9 +49,14 @@ function App() {
         options
       );
       const data = await response.json();
-      console.log(data);
+      console.log("Response:", response);
+      console.log("Data:", data);
 
-      setImages(data.data.map((img) => img.url));
+      if (data && data.data) {
+        setImages(data.data.map((img) => img.url));
+      } else {
+        setError("Failed to generate images.");
+      }
       setLoading(false);
       setValue("");
     } catch (err) {
