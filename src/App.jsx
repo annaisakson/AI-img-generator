@@ -49,8 +49,6 @@ function App() {
         options
       );
       const data = await response.json();
-      console.log("Response:", response);
-      console.log("Data:", data);
 
       if (data && data.data) {
         setImages(data.data.map((img) => img.url));
